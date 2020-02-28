@@ -1,0 +1,19 @@
+if(isset($_POST['Password'])){
+				extract($_POST) or die();
+			 if($username != null){
+			    $stm="SELECT * FROM `user` WHERE `UserName`='$username'";
+				$rs=mysqli_query($link,$stm);
+				if(mysqli_num_rows($rs)){
+				$pswd=SHA1($password);
+				$sqlll="UPDATE `user` SET `Password`='$pswd' WHERE `UserName`='$username'";
+				$result=mysqli_query($link,$sqlll);
+				if($result){
+					$class="alert alert-success alert-dismissible";
+					$message="User Password has been changed Successfully";
+				}
+			 }else{
+				$class="alert alert-danger alert-dismissible";
+			    $message="Oops! Username is required"; 
+			 }
+			 }
+			}
